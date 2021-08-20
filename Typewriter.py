@@ -28,7 +28,6 @@ def update():
     if entry.get()!="" or start!=0:
         if not(s):
             test_time=time_var
-            print(test_time)
         s=True
     if mode.get()==1 and s:
         time_var-=0.1
@@ -38,7 +37,7 @@ def update():
             tabs.select(1)
             with open("typewriter_data.json","r") as f:
                 contents=j.load(f)
-            contents['data'].append({'test_no':len(contents['data'])+1,'WPM':round((correct/test_time)*100),'ACC':round((correct/(correct+mistakes))*100),'Date':t.strftime('%m-%d-%Y')})
+            contents['data'].append({'test_no':len(contents['data'])+1,'WPM':round((correct/test_time)*100),'ACC':round(0 if(correct+mistakes)==0 else(correct/correct+mistakes)*100),'Date':t.strftime('%m-%d-%Y')})
             v=contents['data'][-1]
             results_label.configure(
             text=f"""   WPM - {v['WPM']}
