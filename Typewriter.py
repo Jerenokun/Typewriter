@@ -37,7 +37,7 @@ def update():
             tabs.select(1)
             with open("typewriter_data.json","r") as f:
                 contents=j.load(f)
-            contents['data'].append({'test_no':len(contents['data'])+1,'WPM':round((correct/test_time)*100),'ACC':round(0 if(correct+mistakes)==0 else(1 if mistakes==0 else correct/mistakes)*100),'Date':t.strftime('%m-%d-%Y')})
+            contents['data'].append({'test_no':len(contents['data'])+1,'WPM':round((correct/test_time)*100),'ACC':round(0 if(correct+mistakes)==0 else(1 if mistakes==0 else correct/(correct+mistakes))*100),'Date':t.strftime('%m-%d-%Y')})
             v=contents['data'][-1]
             results_label.configure(
             text=f"""   WPM - {v['WPM']}
